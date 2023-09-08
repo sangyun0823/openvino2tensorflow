@@ -613,7 +613,7 @@ def convert(
             if layer.attrib['type'] == 'Parameter':
                 if not data is None and 'shape' in data.attrib:
                     shape_str  = data.attrib['shape'].split(',')
-                    shape = [int(s) for s in shape_str]
+                    shape = [int(float(s)) for s in shape_str]
                     if len(shape) == 4:
                         if not keep_input_tensor_in_nchw:
                             tf_layers_dict[layer_id] = Input(shape=(shape[2], shape[3], shape[1]), batch_size=shape[0], name=layer_name)
